@@ -22,7 +22,7 @@ export const fetchTags = () => {
     return dispatch => {
       dispatch(fetchTagsRequest());
       axios
-        .get('https://api.stackexchange.com/2.3/tags?order=desc&sort=popular&site=stackoverflow')
+        .get('https://api.stackexchange.com/2.3/tags?site=stackoverflow')
         .then(response => {
           const tags = response.data.items;
           dispatch(fetchTagsSuccess(tags));
