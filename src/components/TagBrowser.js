@@ -9,6 +9,7 @@ import {
   TableBody,
   Button,
   IconButton,
+  TextField
 } from "@mui/material";
 import { fetchTags } from "../actions/tagsActions";
 import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
@@ -19,6 +20,7 @@ const TagBrowser = () => {
   const [pagination, setPagination] = useState({ page: 1, perPage: 10 });
   const [sortedColumn, setSortedColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState(null);
+  const [perPageInput, setPerPageInput] = useState(10);
 
   useEffect(() => {
     dispatch(fetchTags());
@@ -31,7 +33,7 @@ const TagBrowser = () => {
       setSortedColumn(column);
       setSortOrder("asc");
     }
-    setPagination({ ...pagination, page: 1 });
+    setPagination({ ...pagination});
   };
 
   const arrowDirection = (column) => {
@@ -39,6 +41,12 @@ const TagBrowser = () => {
       return sortOrder === "asc" ? <ArrowUpward /> : <ArrowDownward />;
     }
     return <ArrowDownward />;
+  };
+
+  const handlePerPageChange = (event) => {
+    const perPage = parseInt(event.target.value, 10);
+    setPerPageInput(perPage);
+    setPagination({ ...pagination, perPage });
   };
 
   const sortedTags = tags.sort((a, b) => {
@@ -73,6 +81,16 @@ const TagBrowser = () => {
 
   return (
     <div>
+      <TextField
+          label="Elements Per Page"
+          type="number"
+          value={perPageInput}
+          onChange={handlePerPageChange}
+          InputLabelProps={{
+            shrink: true,
+            style: { marginLeft: '0.5rem', marginTop: '0.5rem' } 
+          }}
+        />
       <Table>
         <TableHead>
           <TableRow>
