@@ -14,7 +14,7 @@ import {
 import { fetchTags } from "../actions/tagsActions";
 import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
 
-const TagBrowser = () => {
+export const TagBrowser = () => {
   const dispatch = useDispatch();
   const { tags, loading, error } = useSelector((state) => state.tags);
   const [pagination, setPagination] = useState({ page: 1, perPage: 10 });
@@ -129,5 +129,3 @@ const TagBrowser = () => {
     </div>
   );
 };
-
-export default TagBrowser;
