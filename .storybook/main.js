@@ -1,6 +1,7 @@
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
-const config = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+
+export default {
+  stories: ["../src/components/**/*.stories.js"],
   addons: [
     "@storybook/preset-create-react-app",
     "@storybook/addon-onboarding",
@@ -16,7 +17,5 @@ const config = {
   docs: {
     autodocs: true,
   },
-  staticDirs: ["..\\public"],
+  staticDirs: ["../public"],
 };
-
-export default config;

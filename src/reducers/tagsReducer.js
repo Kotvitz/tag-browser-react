@@ -22,7 +22,7 @@ const tagsReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        tags: action.payload,
+        tags: [...action.payload],
       };
     case FETCH_TAGS_FAILURE:
       return {
